@@ -137,7 +137,7 @@ The builtin status bar (disable from the User Interface tab)\n\
 is very limited in it's configuration options and \
 can be very difficult to read.\n\
 \n\
-The statusbar plugin improves on some of these difficulties.\
+The statusbar plugin improves on some of these difficulties.\n\
   Best used with OpenGL enabled (requires some basic OpenGL extensions).\n");
 }
 
@@ -148,7 +148,7 @@ void StatusbarPrefsDialog::OnBuiltinString( wxCommandEvent& event )
     wxString OwnshipString = _T("Ship %02A %2.4B %D   %02E %2.4F %H   SOG %.2I  COG %03J");
     wxString MultilineString = _T("%02A %2.2B%D  %02E %2.2F%H  %.1I %03J\
 \\n%02O %2.2P%R %02S %2.2T%V %03W %.2X %03.a");
-    
+
     switch(event.GetSelection()) {
     case 0: break;
     case 1:  m_tDisplayString->SetValue(DefaultString); break;
@@ -227,7 +227,7 @@ wxString statusbar_pi::StatusString(PlugIn_ViewPort *vp)
                 else break;
                 if(++i >= text.length()) break;
             }
-        done:            
+        done:
             wxString fmt = _T("%") + ipart + _T(".") + fpart + _T("f");
 
             bool degree = false;
@@ -354,7 +354,7 @@ bool statusbar_pi::RenderOverlay(wxDC &dc, PlugIn_ViewPort *vp)
 
     wxString outputtext = StatusString(vp);
     wxWindow *parent_window = GetOCPNCanvasWindow();
-    
+
     int px = m_PreferencesDialog->m_sXPosition->GetValue();
     int py = parent_window->GetSize().y - GetYPosition();
 
@@ -511,7 +511,7 @@ bool statusbar_pi::LoadConfig(void)
     wxString colorstr = m_PreferencesDialog->m_colourPicker->GetColour().GetAsString();
     pConf->Read( _T("Color")+ColorSchemeName(), &colorstr, colorstr );
     m_PreferencesDialog->m_colourPicker->SetColour(wxColour(colorstr));
-        
+
     bool invertbackground = true;
     pConf->Read( _T("InvertBackground")+ColorSchemeName(), &invertbackground, invertbackground );
     m_PreferencesDialog->m_cbInvertBackground->SetValue(invertbackground);
@@ -519,7 +519,7 @@ bool statusbar_pi::LoadConfig(void)
     bool blur = true;
     pConf->Read( _T("Blur")+ColorSchemeName(), &blur, blur );
     m_PreferencesDialog->m_cbBlur->SetValue(blur);
-    
+
     int transparency = 96;
     pConf->Read( _T("Transparency")+ColorSchemeName(), &transparency, transparency );
     m_PreferencesDialog->m_sTransparency->SetValue(transparency);
@@ -532,7 +532,7 @@ bool statusbar_pi::LoadConfig(void)
     int transparencybg = 180;
     pConf->Read( _T("TransparencyBG")+ColorSchemeName(), &transparencybg, transparencybg );
     m_PreferencesDialog->m_sTransparencyBG->SetValue(transparencybg);
-    
+
     int XPosition = 0;
     pConf->Read( _T("XPosition"), &XPosition, XPosition );
     m_PreferencesDialog->m_sXPosition->SetValue(XPosition);
@@ -540,21 +540,21 @@ bool statusbar_pi::LoadConfig(void)
     int YPosition = -100;
     pConf->Read( _T("YPosition"), &YPosition, YPosition );
     m_PreferencesDialog->m_sYPosition->SetValue(YPosition);
-    
+
     int fontsize = 18;
     pConf->Read( _T("FontSize"), &fontsize, fontsize );
     int fontweight = wxFONTWEIGHT_NORMAL;
     pConf->Read( _T("FontWeight"), &fontweight, fontweight );
     wxString fontfacename;
     pConf->Read( _T("FontFaceName"), &fontfacename, fontfacename );
-    
+
     wxFont font(fontsize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, (wxFontWeight)fontweight, false, fontfacename);
     m_PreferencesDialog->m_fontPicker->SetSelectedFont(font);
 
     wxString DisplayString = DefaultString;
     pConf->Read( _T("DisplayString"), &DisplayString, DisplayString );
     m_PreferencesDialog->m_tDisplayString->SetValue(DisplayString);
-    
+
     return true;
 }
 
@@ -566,7 +566,7 @@ bool statusbar_pi::SaveConfig(void)
         return false;
 
     pConf->SetPath( _T("/PlugIns/StatusBar") );
-    
+
     pConf->Write( _T("Color")+ColorSchemeName(),
                   m_PreferencesDialog->m_colourPicker->GetColour().GetAsString() );
     pConf->Write( _T("InvertBackground")+ColorSchemeName(),
@@ -585,9 +585,9 @@ bool statusbar_pi::SaveConfig(void)
     pConf->Write( _T("FontSize"), font.GetPointSize() );
     pConf->Write( _T("FontWeight"), (int)font.GetWeight() );
     pConf->Write( _T("FontFaceName"), font.GetFaceName() );
-    
+
     pConf->Write( _T("DisplayString"), m_PreferencesDialog->m_tDisplayString->GetValue() );
-    
+
     return true;
 }
 
